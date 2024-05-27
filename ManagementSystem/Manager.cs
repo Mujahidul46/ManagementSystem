@@ -86,17 +86,23 @@ namespace ManagementSystem
             }
             else
             {
-                for (int i = 0; i < people.Count; i++)
-                {
-                    Console.Write($"{i + 1}) ");
-                    people[i].PrintUserDetails();
-                }
+                PrintAllUserDetails();
                 Console.WriteLine("\nSuccessfully printed all users!\n");
             }
 
             GoBackToMenu();
 
         }
+
+        public void PrintAllUserDetails()
+        {
+            for (int i = 0; i < people.Count; i++)
+            {
+                Console.Write($"{i + 1}) ");
+                people[i].PrintUserDetails();
+            }
+        }
+
         public void AddUser()
         {
             OptionInitialMessage("Add a user...");
@@ -109,7 +115,7 @@ namespace ManagementSystem
             Console.WriteLine("\nSuccessfully added a new user!\n");
             GoBackToMenu();
         }
-        public void EditUser()
+        public void EditUser()// display people  for user to edit
         {
             OptionInitialMessage("Edit a user...");
 
@@ -120,41 +126,49 @@ namespace ManagementSystem
                 return;
             }
 
+            Console.WriteLine("List of users:\n");
+            PrintAllUserDetails();
+            Console.WriteLine("\n");
+
             while (true)
             {
                 string? nameOfUserToEdit = InputUtility.GetValidTitleCaseName("Name of person to update details for? ");
-                bool foundMatch = false;
-                for (int i = 0; i < people.Count; i++)
+
+                if (FindAndEditUser(nameOfUserToEdit))
                 {
-                    if (nameOfUserToEdit == people[i].GetName())
-                    {
-                        Console.WriteLine($"\nThe current details of this user are:");
-                        people[i].PrintUserDetails();
-
-                        string updatedUserName = InputUtility.GetValidTitleCaseName("\nNew name for user? ");
-                        int updatedUserAge = InputUtility.GetIntegerWithOptionalRange("New age for user? ", true, 0, 150);
-
-                        people[i].SetName(updatedUserName);
-                        people[i].SetAge(updatedUserAge);
-
-                        Console.WriteLine("\nSuccessfully edited the user!\n");
-                        GoBackToMenu();
-                        return;
-                    }
+                    return; // Successfully found and edited user
                 }
-                if (!foundMatch)
+
+                Console.WriteLine("The user you are trying to edit does not exist in the system. Press <Enter> to try again or <Escape> to return to menu.");
+                if (Console.ReadKey(true).Key == ConsoleKey.Enter)
                 {
-                    Console.WriteLine("The user you are trying to edit does not exist in the system. Press <Enter> to try again or <Escape> to return to menu.");
-                    if (Console.ReadKey().Key == ConsoleKey.Enter)
-                    {
-                        continue; // If Enter is pressed, ask for another name in the next loop iteration.
-                    }
-                    else
-                    {
-                        return; // If any other key is pressed, return to the menu.
-                    }
+                    continue; // If Enter is pressed, ask for another name in the next loop iteration.
+                }
+                else
+                {
+                    return; // If any other key is pressed, return to the menu.
                 }
             }
+        }
+
+        public bool FindAndEditUser(string nameOfUserToEdit)
+        {
+            for (int i = 0; i < people.Count; i++)
+            {
+                if (nameOfUserToEdit == people[i].GetName())
+                {
+                    string updatedUserName = InputUtility.GetValidTitleCaseName("\nNew name for user? ");
+                    int updatedUserAge = InputUtility.GetIntegerWithOptionalRange("New age for user? ", true, 0, 150);
+
+                    people[i].SetName(updatedUserName);
+                    people[i].SetAge(updatedUserAge);
+
+                    Console.WriteLine("\nSuccessfully edited the user!\n");
+                    GoBackToMenu();
+                    return true;
+                }
+            }
+            return false;
         }
         public void SearchUser()
         {
