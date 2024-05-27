@@ -1,0 +1,14 @@
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\bin\Debug\net8.0\ManagementSystem.exe
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\bin\Debug\net8.0\ManagementSystem.deps.json
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\bin\Debug\net8.0\ManagementSystem.runtimeconfig.json
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\bin\Debug\net8.0\ManagementSystem.dll
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\bin\Debug\net8.0\ManagementSystem.pdb
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\obj\Debug\net8.0\ManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\obj\Debug\net8.0\ManagementSystem.AssemblyInfoInputs.cache
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\obj\Debug\net8.0\ManagementSystem.AssemblyInfo.cs
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\obj\Debug\net8.0\ManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\obj\Debug\net8.0\ManagementSystem.dll
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\obj\Debug\net8.0\refint\ManagementSystem.dll
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\obj\Debug\net8.0\ManagementSystem.pdb
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\obj\Debug\net8.0\ManagementSystem.genruntimeconfig.cache
+C:\Users\Taqiyah\OneDrive\Desktop\Deloitte\Learnin C Sharp\ManagementSystem\ManagementSystem\obj\Debug\net8.0\ref\ManagementSystem.dll
