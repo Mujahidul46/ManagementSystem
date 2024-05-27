@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "ManagementSystem\\Manager.cs",
               "ToolTip": "C:\\Users\\Taqiyah\\OneDrive\\Desktop\\Deloitte\\Learnin C Sharp\\ManagementSystem\\ManagementSystem\\Manager.cs",
               "RelativeToolTip": "ManagementSystem\\Manager.cs",
-              "ViewState": "AQIAADEAAAAAAAAAAAAtwEYAAAAiAAAA",
+              "ViewState": "AQIAAPYAAAAAAAAAAAAAACMAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-11T13:20:59.399Z",
               "EditorCaption": ""
@@ -51,8 +51,7 @@
               "RelativeToolTip": "ManagementSystem\\Person.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAAAQwBMAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-11T13:19:41.577Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T13:19:41.577Z"
             },
             {
               "$type": "Document",
@@ -64,8 +63,7 @@
               "RelativeToolTip": "ManagementSystem\\InputUtility.cs",
               "ViewState": "AQIAAD4AAAAAAAAAAAAwwEwAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T23:20:22.363Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-10T23:20:22.363Z"
             },
             {
               "$type": "Document",
@@ -77,8 +75,7 @@
               "RelativeToolTip": "ManagementSystem\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T14:39:58.664Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T14:39:58.664Z"
             }
           ]
         }

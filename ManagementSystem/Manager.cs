@@ -14,26 +14,26 @@ namespace ManagementSystem
         {
             people = new List<Person>()
             {
-                new Person("Bob", 22),
-                new Person("Alice", 29),
-                new Person("Jim", 31),
-                new Person("Eve", 25),
-                new Person("Frank", 45),
-                new Person("Grace", 32),
-                new Person("Hank", 38),
-                new Person("Ivy", 27),
-                new Person("Jack", 19),
-                new Person("Kara", 40),
-                new Person("Leo", 35),
-                new Person("Mia", 50),
-                new Person("Nina", 60),
-                new Person("Oscar", 70),
-                new Person("Paul", 80),
-                new Person("Quinn", 90),
-                new Person("Rose", 100),
-                new Person("Sam", 110),
-                new Person("Tina", 120),
-                new Person("Uma", 130)
+                //new Person("Bob", 22),
+                //new Person("Alice", 29),
+                //new Person("Jim", 31),
+                //new Person("Eve", 25),
+                //new Person("Frank", 45),
+                //new Person("Grace", 32),
+                //new Person("Hank", 38),
+                //new Person("Ivy", 27),
+                //new Person("Jack", 19),
+                //new Person("Kara", 40),
+                //new Person("Leo", 35),
+                //new Person("Mia", 50),
+                //new Person("Nina", 60),
+                //new Person("Oscar", 70),
+                //new Person("Paul", 80),
+                //new Person("Quinn", 90),
+                //new Person("Rose", 100),
+                //new Person("Sam", 110),
+                //new Person("Tina", 120),
+                //new Person("Uma", 130)
 
             };
             PrintMenu();
@@ -96,7 +96,7 @@ namespace ManagementSystem
         {
             OptionInitialMessage("Printing all users...");
 
-            if (ReturnToMenuIfNoUsers())
+            if (IsSystemEmpty())
                 return;
 
             PrintAllUserDetails();
@@ -132,7 +132,7 @@ namespace ManagementSystem
         {
             OptionInitialMessage("Edit a user...");
 
-            if (ReturnToMenuIfNoUsers())
+            if (IsSystemEmpty())
                 return;
 
             Console.WriteLine("List of users:\n");
@@ -187,7 +187,7 @@ namespace ManagementSystem
             OptionInitialMessage("Search for a user...");
             bool foundUser = false;
 
-            if (ReturnToMenuIfNoUsers())
+            if (IsSystemEmpty())
                 return;
 
             string nameOfUserToSearchFor = InputUtility.GetValidTitleCaseName("Name of user to search for?\n");
@@ -214,7 +214,7 @@ namespace ManagementSystem
         {
             OptionInitialMessage("Remove a user...");
 
-            if (ReturnToMenuIfNoUsers())
+            if (IsSystemEmpty())
                 return;
 
             Console.WriteLine("List of users:\n");
@@ -259,7 +259,7 @@ namespace ManagementSystem
             Console.WriteLine($"{message}\n");
         }
 
-        public bool ReturnToMenuIfNoUsers()
+        public bool IsSystemEmpty()
         {
             if (people.Count == 0)
             {
