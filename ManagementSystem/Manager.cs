@@ -13,15 +13,31 @@ namespace ManagementSystem
         public Manager()
         {
             people = new List<Person>()
-            /*{
+            {
                 new Person("Bob", 22),
                 new Person("Alice", 29),
                 new Person("Jim", 31),
+                new Person("Eve", 25),
+                new Person("Frank", 45),
+                new Person("Grace", 32),
+                new Person("Hank", 38),
+                new Person("Ivy", 27),
+                new Person("Jack", 19),
+                new Person("Kara", 40),
+                new Person("Leo", 35),
+                new Person("Mia", 50),
+                new Person("Nina", 60),
+                new Person("Oscar", 70),
+                new Person("Paul", 80),
+                new Person("Quinn", 90),
+                new Person("Rose", 100),
+                new Person("Sam", 110),
+                new Person("Tina", 120),
+                new Person("Uma", 130)
 
-            }*/;
+            };
             PrintMenu();
         }
-        // TODO: push to github so u can debug easier...
 
         public void PrintMenu()
         {
@@ -31,12 +47,12 @@ namespace ManagementSystem
                 Console.Clear();
 
                 Console.WriteLine("Welcome to the management system!\n");
-                Console.WriteLine("1. Print all users (IMPLEMENTED)");
-                Console.WriteLine("2. Add user (IMPLEMENTED)");
-                Console.WriteLine("3. Edit user (IMPLEMENTED)");
-                Console.WriteLine("4. Search user (NOT IMPLEMENTED)");
-                Console.WriteLine("5. Remove user (NOT IMPLEMENTED)");
-                Console.WriteLine("6. Exit (NOT IMPLEMENTED)");
+                Console.WriteLine("1. Print all users");
+                Console.WriteLine("2. Add user");
+                Console.WriteLine("3. Edit user");
+                Console.WriteLine("4. Search user");
+                Console.WriteLine("5. Remove user");
+                Console.WriteLine("6. Exit");
 
                 Console.Write("\nEnter your menu option: ");
 
@@ -80,15 +96,12 @@ namespace ManagementSystem
         {
             OptionInitialMessage("Printing all users...");
 
-            if (people.Count == 0)
-            {
-                Console.WriteLine("No users are in the system.\n");
-            }
-            else
-            {
-                PrintAllUserDetails();
-                Console.WriteLine("\nSuccessfully printed all users!\n");
-            }
+            if (ReturnToMenuIfNoUsers())
+                return;
+
+            PrintAllUserDetails();
+            Console.WriteLine("\nSuccessfully printed all users!\n");
+
 
             GoBackToMenu();
 
@@ -115,16 +128,12 @@ namespace ManagementSystem
             Console.WriteLine("\nSuccessfully added a new user!\n");
             GoBackToMenu();
         }
-        public void EditUser()// display people  for user to edit
+        public void EditUser()
         {
             OptionInitialMessage("Edit a user...");
 
-            if (people.Count == 0)
-            {
-                Console.WriteLine("There are no users in the system to edit.\n");
-                GoBackToMenu();
+            if (ReturnToMenuIfNoUsers())
                 return;
-            }
 
             Console.WriteLine("List of users:\n");
             PrintAllUserDetails();
@@ -176,6 +185,27 @@ namespace ManagementSystem
         public void SearchUser()
         {
             OptionInitialMessage("Search for a user...");
+            bool foundUser = false;
+
+            if (ReturnToMenuIfNoUsers())
+                return;
+
+            string nameOfUserToSearchFor = InputUtility.GetValidTitleCaseName("Name of user to search for?\n");
+            
+            for (int i = 0; i < people.Count; i++)
+            {
+                if (people[i].GetName().ToLower().Contains(nameOfUserToSearchFor.ToLower()))
+                {
+                    people[i].PrintUserDetails();
+                    Console.Write("\n");
+                    foundUser = true;
+                    break;
+                }
+            }
+            if (!foundUser)
+            {
+                Console.WriteLine("Could not find that user in the system.\n");
+            }
 
             GoBackToMenu();
 
@@ -184,8 +214,37 @@ namespace ManagementSystem
         {
             OptionInitialMessage("Remove a user...");
 
-            GoBackToMenu();
+            if (ReturnToMenuIfNoUsers())
+                return;
 
+            Console.WriteLine("List of users:\n");
+            PrintAllUserDetails();
+            Console.WriteLine("\n");
+
+            int indexOfPersonToRemove = InputUtility.GetIntegerWithOptionalRange("Please enter the index of the user you would like to remove: ", true, 1, people.Count);
+
+            Console.WriteLine($"\nHere are the details of the user you would like to remove: ");
+            people[indexOfPersonToRemove - 1].PrintUserDetails();
+
+            string confirmYesOrNo = InputUtility.GetNonEmptyString("\nAre you sure you want to remove this user from the system? (yes/no) ");
+
+            while (confirmYesOrNo.ToLower() != "yes" && confirmYesOrNo.ToLower() != "y" && confirmYesOrNo.ToLower() != "no" && confirmYesOrNo.ToLower() != "n")
+            {
+                Console.WriteLine("\nInvalid input. Please enter 'yes' or 'no'.");
+                confirmYesOrNo = InputUtility.GetNonEmptyString("Are you sure you want to remove this user from the system? (yes/no) ");
+            }
+
+            if (confirmYesOrNo.ToLower() == "yes" || confirmYesOrNo.ToLower() == "y")
+            {
+                people.RemoveAt(indexOfPersonToRemove - 1);
+                Console.WriteLine("\nSuccessfully removed user from the system.\n");
+            }
+            else
+            {
+                Console.WriteLine("\nCancelled removal of that user from the system.\n");
+            }
+
+            GoBackToMenu();
         }
 
         public void GoBackToMenu()
@@ -198,6 +257,17 @@ namespace ManagementSystem
         {
             Console.Clear();
             Console.WriteLine($"{message}\n");
+        }
+
+        public bool ReturnToMenuIfNoUsers()
+        {
+            if (people.Count == 0)
+            {
+                Console.WriteLine("There are no users in the system.\n");
+                GoBackToMenu();
+                return true;
+            }
+            return false;
         }
     }
 }
