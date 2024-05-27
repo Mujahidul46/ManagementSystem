@@ -132,9 +132,11 @@ namespace ManagementSystem
 
             while (true)
             {
-                string? nameOfUserToEdit = InputUtility.GetValidTitleCaseName("Name of person to update details for? ");
+                int indexOfUserToEdit = InputUtility.GetIntegerWithOptionalRange("Index of person to update details for? ", true, 1, people.Count);
+                string nameOfUserToEdit = people[indexOfUserToEdit - 1].GetName();
+                int ageOfUserToEdit = people[indexOfUserToEdit - 1].GetAge();
 
-                if (FindAndEditUser(nameOfUserToEdit))
+                if (FindAndEditUser(nameOfUserToEdit, ageOfUserToEdit))
                 {
                     return; // Successfully found and edited user
                 }
@@ -151,7 +153,7 @@ namespace ManagementSystem
             }
         }
 
-        public bool FindAndEditUser(string nameOfUserToEdit)
+        public bool FindAndEditUser(string nameOfUserToEdit, int ageOfUserToEdit)
         {
             for (int i = 0; i < people.Count; i++)
             {
@@ -163,7 +165,8 @@ namespace ManagementSystem
                     people[i].SetName(updatedUserName);
                     people[i].SetAge(updatedUserAge);
 
-                    Console.WriteLine("\nSuccessfully edited the user!\n");
+                    Console.WriteLine("\nSuccessfully edited the user!");
+                    Console.WriteLine($"{nameOfUserToEdit} | {ageOfUserToEdit} --> {updatedUserName} | {updatedUserAge}\n");
                     GoBackToMenu();
                     return true;
                 }
