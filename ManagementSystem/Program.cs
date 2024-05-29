@@ -8,7 +8,7 @@ namespace ManagementSystem
     {
             static void Main(string[] args)
             {
-                Manager manager = new Manager();
+                new Manager();
 
             Console.WriteLine("\nPress <Enter> to close the program!");
             Console.WriteLine("Goodbye!");

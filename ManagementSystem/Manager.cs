@@ -12,8 +12,10 @@ namespace ManagementSystem
 
         public Manager()
         {
-            people = new List<Person>()
+            people = new List<Person>() // Create a list of people
             {
+                // Create hard-coded person objects - Only use for testing purposes.
+
                 //new Person("Bob", 22),
                 //new Person("Alice", 29),
                 //new Person("Jim", 31),
@@ -56,7 +58,7 @@ namespace ManagementSystem
 
                 Console.Write("\nEnter your menu option: ");
 
-                if (int.TryParse(Console.ReadLine(), out int menuOption))
+                if (int.TryParse(Console.ReadLine(), out int menuOption)) // Checks if valid integer is entered
                 {
                     switch (menuOption)
                     {
@@ -76,7 +78,7 @@ namespace ManagementSystem
                             RemoveUser();
                             break;
                         case 6:
-                            continueRunning = false; // Exit the loop
+                            continueRunning = false; // Exit the loop if 'Exit' selected
                             break;
                         default:
                             Console.WriteLine("\nInvalid option. Press <Enter> to continue.");
@@ -91,7 +93,6 @@ namespace ManagementSystem
                 }
             }
         }
-
         public void PrintAllUsers()
         {
             OptionInitialMessage("Printing all users...");
@@ -111,15 +112,15 @@ namespace ManagementSystem
         {
             for (int i = 0; i < people.Count; i++)
             {
-                Console.Write($"{i + 1}) ");
+                Console.Write($"{i + 1}) "); // These 2 lines print a numbered list of people info. E.g. 1) Name: Alice Smith | Age: 23
                 people[i].PrintUserDetails();
             }
         }
 
-        public void AddUser()
+        public void AddUser() // Asks for a name and age of the new user, and then adds the user to the system
         {
             OptionInitialMessage("Add a user...");
-            int newUserAge = -1;
+            int newUserAge;
 
             string newUserName = InputUtility.GetValidTitleCaseName("Name of the new user? ");
             newUserAge = InputUtility.GetIntegerWithOptionalRange("Age of the user? ", true, 0, 150);
@@ -136,33 +137,25 @@ namespace ManagementSystem
                 return;
 
             Console.WriteLine("List of users:\n");
-            PrintAllUserDetails();
+            PrintAllUserDetails(); // Displays all users to help the manager to find the user they want to edit.
             Console.WriteLine("\n");
 
-            while (true)
-            {
-                int indexOfUserToEdit = InputUtility.GetIntegerWithOptionalRange("Index of person to update details for? ", true, 1, people.Count);
-                string nameOfUserToEdit = people[indexOfUserToEdit - 1].GetName();
-                int ageOfUserToEdit = people[indexOfUserToEdit - 1].GetAge();
+            // Ask for index of the user to edit. This is quicker and more convenient than making the manager type the name.
+            int indexOfUserToEdit = InputUtility.GetIntegerWithOptionalRange("Index of person to update details for? ", true, 1, people.Count);
 
-                if (FindAndEditUser(nameOfUserToEdit, ageOfUserToEdit))
-                {
-                    return; // Successfully found and edited user
-                }
+            // Get the name and age of the user to edit. These variables are used to inform the manager which person they are currently
+            // editing.
+            // Additionally, these values are passed to FindAndEditUser method so a summary of changes can be displayed after
+            // a successful edit.
+            string nameOfUserToEdit = people[indexOfUserToEdit - 1].GetName();
+            int ageOfUserToEdit = people[indexOfUserToEdit - 1].GetAge();
 
-                Console.WriteLine("The user you are trying to edit does not exist in the system. Press <Enter> to try again or <Escape> to return to menu.");
-                if (Console.ReadKey(true).Key == ConsoleKey.Enter)
-                {
-                    continue; // If Enter is pressed, ask for another name in the next loop iteration.
-                }
-                else
-                {
-                    return; // If any other key is pressed, return to the menu.
-                }
-            }
+            Console.WriteLine($"\nYou are currently editing the following user:\n{nameOfUserToEdit} | {ageOfUserToEdit}");
+
+            FindAndEditUser(nameOfUserToEdit, ageOfUserToEdit);
         }
 
-        public bool FindAndEditUser(string nameOfUserToEdit, int ageOfUserToEdit)
+        public void FindAndEditUser(string nameOfUserToEdit, int ageOfUserToEdit) // Updates the user details with the new name and age.
         {
             for (int i = 0; i < people.Count; i++)
             {
@@ -175,12 +168,14 @@ namespace ManagementSystem
                     people[i].SetAge(updatedUserAge);
 
                     Console.WriteLine("\nSuccessfully edited the user!");
+
+                    // Displays summary of changes for manager to review.
                     Console.WriteLine($"{nameOfUserToEdit} | {ageOfUserToEdit} --> {updatedUserName} | {updatedUserAge}\n");
                     GoBackToMenu();
-                    return true;
+
+                    return; // Return once user is edited to avoid unnecessarily iterating over entire people list.
                 }
             }
-            return false;
         }
         public void SearchUser()
         {
@@ -194,7 +189,10 @@ namespace ManagementSystem
             
             for (int i = 0; i < people.Count; i++)
             {
-                if (people[i].GetName().ToLower().Contains(nameOfUserToSearchFor.ToLower()))
+                // Use .Contains() to ensure that the name inputted is correctly matched with the name in the system, even if the name is
+                // only partially given.
+                // This helps the manager successfully search for a user, even if they can't remember exact spelling of name.
+                if (people[i].GetName().Contains(nameOfUserToSearchFor))
                 {
                     people[i].PrintUserDetails();
                     Console.Write("\n");
@@ -210,7 +208,7 @@ namespace ManagementSystem
             GoBackToMenu();
 
         }
-        public void RemoveUser()
+        public void RemoveUser() // Removes a user by asking the manager to enter the index of the user they want to remove.
         {
             OptionInitialMessage("Remove a user...");
 
@@ -226,8 +224,10 @@ namespace ManagementSystem
             Console.WriteLine($"\nHere are the details of the user you would like to remove: ");
             people[indexOfPersonToRemove - 1].PrintUserDetails();
 
+            // Asks for confirmation as removing a user is an irreversible process.
             string confirmYesOrNo = InputUtility.GetNonEmptyString("\nAre you sure you want to remove this user from the system? (yes/no) ");
 
+            // Validates input - Only "yes/y/no/n" are valid inputs.
             while (confirmYesOrNo.ToLower() != "yes" && confirmYesOrNo.ToLower() != "y" && confirmYesOrNo.ToLower() != "no" && confirmYesOrNo.ToLower() != "n")
             {
                 Console.WriteLine("\nInvalid input. Please enter 'yes' or 'no'.");
@@ -239,7 +239,7 @@ namespace ManagementSystem
                 people.RemoveAt(indexOfPersonToRemove - 1);
                 Console.WriteLine("\nSuccessfully removed user from the system.\n");
             }
-            else
+            else // Manager entered "no" or "n", so cancel removal of user.
             {
                 Console.WriteLine("\nCancelled removal of that user from the system.\n");
             }

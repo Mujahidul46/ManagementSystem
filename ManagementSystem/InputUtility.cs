@@ -6,6 +6,15 @@ namespace ManagementSystem
 {
     public static class InputUtility
     {
+        /// <summary>
+        /// Validates user input until a valid integer is entered. Optionally you can specify a range that the integer must be within.
+        /// </summary>
+        /// <param name="prompt">The message displayed to the user prompting for input.</param>
+        /// <param name="setMinMaxLimits">A boolean indicating whether to enforce a range for the integer.</param>
+        /// <param name="min">The minumum value allowed, inclusive. Only used if <paramref name="setMinMaxLimits"/> is true.</param>
+        /// <param name="max">The maximum value allowed, inclusive. Only used if <paramref name="setMinMaxLimits"/> is true.</param>
+        /// <returns>An integer entered by the user.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="min"/> is greater than <paramref name="max"/>.</exception>
         public static int GetIntegerWithOptionalRange(string prompt, bool setMinMaxLimits = false, int min = 0, int max = 0)
         {
             if (setMinMaxLimits && min > max)
@@ -43,6 +52,11 @@ namespace ManagementSystem
             return number;
         }
 
+        /// <summary>
+        /// Returns a non-empty string.
+        /// </summary>
+        /// <param name="prompt">The message displayed to the user prompting for input.</param>
+        /// <returns>A non-empty string entered by the user.</returns>
         public static string GetNonEmptyString(string prompt)
         {
             Console.Write(prompt);
@@ -57,7 +71,11 @@ namespace ManagementSystem
             return input!;
         }
 
-
+        /// <summary>
+        /// Returns a name in the title case format. E.g. Alice Smith
+        /// </summary>
+        /// <param name="prompt">The message displayed to the user prompting for a name to be input.</param>
+        /// <returns>A valid title case name.</returns>
         public static string GetValidTitleCaseName(string prompt)
         {
             string? input = null;
